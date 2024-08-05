@@ -63,10 +63,10 @@ class SignInFragment : Fragment() {
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        SharedPref.getInstance().saveIsLoggedIn(true);
         try {
             val account = completedTask.getResult(ApiException::class.java)
 
-            SharedPref.getInstance().saveIsLoggedIn(true);
             updateUI(account)
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.

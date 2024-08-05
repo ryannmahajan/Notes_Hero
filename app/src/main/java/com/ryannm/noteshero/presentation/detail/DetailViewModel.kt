@@ -1,5 +1,6 @@
 package com.ryannm.noteshero.presentation.detail
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryannm.noteshero.data.NoteDatabase
@@ -8,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+private const val TAG = "DetailVM"
 class DetailViewModel(
 ) : ViewModel() {
     private val _note = MutableStateFlow(Note())
@@ -36,15 +38,16 @@ class DetailViewModel(
         onComplete()
     }
 
-    fun setNoteID(id: Int) {
+    fun setNoteID(id: Int?) {
         noteID = id
     }
 
     fun fetchNote() {
+        Log.d(TAG, "Received noteID: $noteID")
         viewModelScope.launch {
-            noteID?.let {
-                _note.value = noteDao.getNoteById(it)
-            }
+            _note.value = noteID?.let {
+                 noteDao.getNoteById(it)
+            } ?: Note()
         }
     }
 }

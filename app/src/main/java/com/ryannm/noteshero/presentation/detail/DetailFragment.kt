@@ -10,8 +10,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.ryannm.noteshero.R
 import com.ryannm.noteshero.presentation.list.ListFragment
+import kotlinx.coroutines.launch
 
 
 class DetailFragment : Fragment() {
@@ -38,8 +40,12 @@ class DetailFragment : Fragment() {
         saveButton = v.findViewById(R.id.saveButton)
         deleteButton = v.findViewById(R.id.deleteButton)
 
-        title.text = detailViewModel.note.value.title
-        content.text = detailViewModel.note.value.content
+        viewLifecycleOwner.lifecycleScope.launch {
+            detailViewModel.note.collect {
+                title.text = it.title
+                content.text = it.content
+            }
+        }
 
         title.addTextChangedListener {
             it?.let { detailViewModel.onEditTitle(it.toString())  }

@@ -1,6 +1,7 @@
 package com.ryannm.noteshero.presentation.list
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ import com.ryannm.noteshero.presentation.detail.DetailFragment
 import com.ryannm.noteshero.presentation.detail.DetailViewModel
 import kotlinx.coroutines.launch
 
-
+private const val TAG = "ListFragment"
 class ListFragment(
 ) : Fragment() {
     private val listViewModel: ListViewModel by viewModels()
@@ -57,11 +58,10 @@ class ListFragment(
 
     private fun navigateToDetailFragment(id: Int? = null) {
         val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+        Log.d(TAG, "Passing id $id")
 
         val detailVM: DetailViewModel = ViewModelProvider(requireActivity())[DetailViewModel::class.java]
-        if (id != null) {
-            detailVM.setNoteID(id)
-        }
+        detailVM.setNoteID(id)
 
         transaction.replace(R.id.fragment_container, DetailFragment::class.java, null)
         transaction.addToBackStack(null)
