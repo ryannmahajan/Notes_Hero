@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "584713043667",
+    "project_id": "notes-hero",
+    "storage_bucket": "notes-hero.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584713043667:android:e43ecfc7ba971520c1de26",
+        "android_client_info": {
+          "package_name": "com.ryannm.noteshero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584713043667-hra9k8giso3g6odk83sc0rcfr9fjed6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmLNnpRwKckm-UbatxlwRvB6nHlVtS6Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584713043667-hra9k8giso3g6odk83sc0rcfr9fjed6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
